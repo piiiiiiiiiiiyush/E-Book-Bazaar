@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup - E-Book Bazaar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h1 style="color: #1e1e2f; font-size: 2rem; margin-bottom: 10px;">📚 E-Book Bazaar</h1>
+      <p style="color: #666; font-size: 0.9rem;">Join the Reading Revolution</p>
+    </div>
+    
+    <h2>Create Your Account</h2>
+    <p style="color: #666; margin-bottom: 25px; font-size: 0.9rem;">Start your reading journey today</p>
+    
+    <form action="{{ url_for('signup') }}" method="post">
+      <div style="position: relative;">
+        <input type="text" name="name" placeholder="Full Name" required style="padding-left: 40px;">
+        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;">👤</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="email" name="email" placeholder="Email Address" required style="padding-left: 40px;">
+        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;">📧</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="password" name="password" placeholder="Password" required style="padding-left: 40px;">
+        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;">🔒</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="password" name="confirm" placeholder="Confirm Password" required style="padding-left: 40px;">
+        <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;">🔐</span>
+      </div>
+      
+      <button type="submit" class="auth-btn">
+        <span style="margin-right: 8px;">✨</span>
+        Create Account
+      </button>
+    </form>
+    
+    <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(39, 174, 96, 0.1); border-radius: 8px;">
+      <p style="margin: 0; color: #666; font-size: 0.85rem;">
+        🎉 <strong>Welcome Bonus:</strong> Get instant access to featured books after registration!
+      </p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(255, 152, 0, 0.1); border-radius: 8px;">
+      <p style="margin: 0; color: #666; font-size: 14px;">
+        Already have an account? 
+        <a href="{{ url_for('login') }}" style="color: #ff9800; text-decoration: none; font-weight: bold;">Sign in here →</a>
+      </p>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="{{ url_for('index') }}" style="color: #999; text-decoration: none; font-size: 0.9rem;">
+        ← Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>

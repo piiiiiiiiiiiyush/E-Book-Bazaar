@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - E-Book Bazaar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">📚 E-Book Bazaar</div>
+      
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/category">Categories</a></li>
+        <li><a href="/authors">Authors</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <input type="text" placeholder="Search books..." class="search-box">
+        <a href="/logout" class="btn login-btn">Logout</a>
+        <a href="#" class="cart-btn">🛒</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="books">
+    <h2>Welcome to Your Dashboard!</h2>
+    <p>Choose a book to purchase:</p>
+    
+    <div class="book-grid">
+      <div class="book-card">
+         <img src="{{ url_for('static', filename='images/powerbook.jpg') }}" alt="The Power of Now">
+        <h3>The Power of Now</h3>
+        <p>by Eckhart Tolle</p>
+        <div class="price">₹399</div>
+       <a href="/book/power" class="buy-btn">View Details</a>
+      </div>
+      
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/download (1).jpg') }}" alt="Python Programming">
+        <h3>Python Programming</h3>
+        <p>by Ryan Turner</p>
+        <div class="price">₹299</div>
+        <a href="/book/python" class="buy-btn">View Details</a>
+      </div>
+      
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/monk.jpg') }}" alt="Think Like a Monk">
+        <h3>Think Like a Monk</h3>
+        <p>by Jay Shetty</p>
+        <div class="price">₹349</div>
+       <a href="/book/monk" class="buy-btn">View Details</a>
+      </div>
+      
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/Avengers.jpg') }}" alt="Avengers Storybook">
+        <h3>Avengers Storybook</h3>
+        <p>by Stan Lee</p>
+        <div class="price">₹199</div>
+        <a href="/book/avengers" class="buy-btn">View Details</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 E-Book Bazaar | All Rights Reserved</p>
+      <div class="social-links">
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

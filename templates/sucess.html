@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="success-body">
+    <div class="success-container">
+        <div class="success-icon">🎉</div>
+        <h2>Payment Successful!</h2>
+        <p>Thank you for your purchase</p>
+        
+        <div class="book-details">
+            <p><strong>Book:</strong> {{ book_name }}</p>
+            <p class="amount">Amount Paid: ₹{{ book_price }}</p>
+        </div>
+        
+        <p>Your e-book will be available in your library shortly.</p>
+        
+        <a href="{{ url_for('dashboard') }}" class="dashboard-btn">Go to Dashboard</a>
+    </div>
+</body>
+</html>

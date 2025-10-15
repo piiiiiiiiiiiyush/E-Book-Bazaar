@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Book Bazaar - Categories</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">📚 E-Book Bazaar</div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/category">Categories</a></li>
+        <li><a href="/authors">Authors</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+      <div class="nav-right">
+        <input type="text" placeholder="Search books..." class="search-box">
+        <a href="/login" class="btn login-btn">Login</a>
+        <a href="/signup" class="btn signup-btn">Signup</a>
+        <a href="#" class="cart-btn">🛒</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="categories">
+    <button onclick="showCategory('science')">Science Fiction</button>
+    <button onclick="showCategory('romance')">Romance</button>
+    <button onclick="showCategory('mystery')">Mystery</button>
+    <button onclick="showCategory('programming')">Programming</button>
+  </div>
+
+  <div id="science" class="book-section">
+    <h2>Science Fiction</h2>
+    <div class="book-grid">
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/dune.jpg') }}" alt="Dune">
+        <h3>Dune</h3>
+        <p>Frank Herbert</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/foundation.jpg') }}" alt="Foundation">
+        <h3>Foundation</h3>
+        <p>Isaac Asimov</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/neuromancer.jpg') }}" alt="Neuromancer">
+        <h3>Neuromancer</h3>
+        <p>William Gibson</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="romance" class="book-section">
+    <h2>Romance</h2>
+    <div class="book-grid">
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/pride.jpg') }}" alt="Pride and Prejudice">
+        <h3>Pride and Prejudice</h3>
+        <p>Jane Austen</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/notebook.jpg') }}" alt="The Notebook">
+        <h3>The Notebook</h3>
+        <p>Nicholas Sparks</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/mebeforeyou.jpg') }}" alt="Me Before You">
+        <h3>Me Before You</h3>
+        <p>Jojo Moyes</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="mystery" class="book-section">
+    <h2>Mystery</h2>
+    <div class="book-grid">
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/sherlock.jpg') }}" alt="Sherlock Holmes">
+        <h3>Sherlock Holmes</h3>
+        <p>Arthur Conan Doyle</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/gonegirl.jpg') }}" alt="Gone Girl">
+        <h3>Gone Girl</h3>
+        <p>Gillian Flynn</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/davinci.jpg') }}" alt="The Da Vinci Code">
+        <h3>The Da Vinci Code</h3>
+        <p>Dan Brown</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="programming" class="book-section">
+    <h2>Programming</h2>
+    <div class="book-grid">
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/python.jpg') }}" alt="Python Crash Course">
+        <h3>Python Crash Course</h3>
+        <p>Eric Matthes</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/cleancode.jpg') }}" alt="Clean Code">
+        <h3>Clean Code</h3>
+        <p>Robert C. Martin</p>
+      </div>
+      <div class="book-card">
+        <img src="{{ url_for('static', filename='images/js.jpg') }}" alt="JavaScript: The Good Parts">
+        <h3>JavaScript: The Good Parts</h3>
+        <p>Douglas Crockford</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 E-Book Bazaar | All Rights Reserved</p>
+      <div class="social-links">
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showCategory(category) {
+      document.querySelectorAll(".book-section").forEach(sec => sec.style.display = "none");
+      document.getElementById(category).style.display = "block";
+    }
+  </script>
+</body>
+</html>

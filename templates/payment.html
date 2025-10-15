@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - {{ book.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="payment-body">
+    <div class="payment-container">
+        <div class="book-info">
+            <h2>{{ book.name }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <div class="price">₹{{ book.price }}</div>
+        </div>
+        
+        <form class="payment-form" method="post" action="{{ url_for('process_payment') }}">
+            <input type="hidden" name="book_id" value="{{ book_id }}">
+            <input type="hidden" name="book_price" value="{{ book.price }}">
+            
+            <h3>Payment Details</h3>
+            
+            <select name="payment_method" required>
+                <option value="">Select Payment Method</option>
+                <option value="credit_card">Credit Card</option>
+                <option value="debit_card">Debit Card</option>
+               
+            </select>
+            
+            <input type="text" name="card_number" placeholder="Card Number (1234-5678-9012-3456)" maxlength="19">
+            <input type="text" name="card_name" placeholder="Cardholder Name">
+            
+            <div class="form-row">
+                <input type="text" name="expiry" placeholder="MM/YY" maxlength="5">
+                <input type="text" name="cvv" placeholder="CVV" maxlength="3">
+            </div>
+            
+            <button type="submit" class="buy-now-btn">Buy Now - ₹{{ book.price }}</button>
+        </form>
+        
+        <a href="{{ url_for('dashboard') }}" class="back-link">← Back to Dashboard</a>
+    </div>
+    
+    <script>
+        // Format card number
+        document.querySelector('input[name="card_number"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join('-') || value;
+            e.target.value = formattedValue;
+        });
+        
+        // Format expiry
+        document.querySelector('input[name="expiry"]').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                e.target.value = value.substring(0,2) + '/' + value.substring(2,4);
+            } else {
+                e.target.value = value;
+            }
+        });
+    </script>
+</body>
+</html>

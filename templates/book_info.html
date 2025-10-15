@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ book.name }} - E-Book Bazaar</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+ 
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">📚 E-Book Bazaar</div>
+      
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('category') }}">Categories</a></li>
+        <li><a href="{{ url_for('authors') }}">Authors</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <input type="text" placeholder="Search books..." class="search-box">
+        {% if 'user' in session %}
+          <a href="{{ url_for('logout') }}" class="btn login-btn">Logout</a>
+        {% else %}
+          <a href="{{ url_for('login') }}" class="btn login-btn">Login</a>
+          <a href="{{ url_for('signup') }}" class="btn signup-btn">Signup</a>
+        {% endif %}
+        <a href="#" class="cart-btn">🛒</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="book-info-section">
+    <div class="book-info-container">
+      <!-- Book Image -->
+      <div class="book-image-wrapper">
+        <img src="{{ url_for('static', filename=book.image) }}" alt="{{ book.name }}">
+        <div class="book-badge">Bestseller</div>
+      </div>
+
+      <!-- Book Details -->
+      <div class="book-details-wrapper">
+        <h1 class="book-title">{{ book.name }}</h1>
+        <p class="book-author">by <strong>{{ book.author }}</strong></p>
+        
+        <div class="book-rating">
+          <span class="stars">⭐⭐⭐⭐⭐</span>
+          <span class="rating-text">(4.5/5 - 1,234 reviews)</span>
+        </div>
+
+        <div class="book-price-section">
+          <span class="current-price">₹{{ book.price }}</span>
+          <span class="original-price">₹{{ book.original_price }}</span>
+          <span class="discount">{{ book.discount }}% OFF</span>
+        </div>
+
+        <div class="book-description">
+          <h3>About This Book</h3>
+          <p>{{ book.description }}</p>
+        </div>
+
+        <div class="book-features">
+          <div class="feature-item">
+            <span class="feature-icon">📖</span>
+            <span>{{ book.pages }} Pages</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🌐</span>
+            <span>{{ book.language }}</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📱</span>
+            <span>Digital Format</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">⚡</span>
+            <span>Instant Download</span>
+          </div>
+         
+        </div>
+
+        <div class="action-buttons">
+          {% if 'user' in session %}
+            <a href="{{ url_for('payment', book=book_id) }}" class="primary-buy-btn">
+              <span>🛒</span> Buy Now
+            </a>
+          {% else %}
+            <a href="{{ url_for('login', book=book_id) }}" class="primary-buy-btn">
+              <span>🛒</span> Buy Now
+            </a>
+          {% endif %}
+          <a href="#" class="wishlist-btn">
+            <span>❤</span> Add to Wishlist
+          </a>
+        </div>
+
+        <div class="delivery-info">
+          <p>✓ Instant digital delivery after purchase</p>
+          <p>✓ Read on any device - Phone, Tablet, or Computer</p>
+          <p>✓ 7-day money-back guarantee</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Information Tabs -->
+    <div class="info-tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('details')">Details</button>
+        <button class="tab-btn" onclick="showTab('reviews')">Reviews</button>
+        <button class="tab-btn" onclick="showTab('author')">About Author</button>
+      </div>
+
+      <div id="details" class="tab-content active">
+        <h3>Book Details</h3>
+        <table class="details-table">
+          <tr>
+            <td><strong>Title:</strong></td>
+            <td>{{ book.name }}</td>
+          </tr>
+          <tr>
+            <td><strong>Author:</strong></td>
+            <td>{{ book.author }}</td>
+          </tr>
+          <tr>
+            <td><strong>Publisher:</strong></td>
+            <td>{{ book.publisher }}</td>
+          </tr>
+          <tr>
+            <td><strong>Publication Year:</strong></td>
+            <td>{{ book.year }}</td>
+          </tr>
+          <tr>
+            <td><strong>Pages:</strong></td>
+            <td>{{ book.pages }}</td>
+          </tr>
+          <tr>
+            <td><strong>Language:</strong></td>
+            <td>{{ book.language }}</td>
+          </tr>
+          <tr>
+            <td><strong>ISBN:</strong></td>
+            <td>{{ book.isbn }}</td>
+          </tr>
+          <tr>
+            <td><strong>Category:</strong></td>
+            <td>{{ book.category }}</td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="reviews" class="tab-content">
+        <h3>Customer Reviews</h3>
+        <div class="review-item">
+          <div class="review-header">
+            <strong>Rahul Sharma</strong>
+            <span class="review-stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="review-text">{{ book.review_1 }}</p>
+        </div>
+        <div class="review-item">
+          <div class="review-header">
+            <strong>Priya Patel</strong>
+            <span class="review-stars">⭐⭐⭐⭐</span>
+          </div>
+          <p class="review-text">{{ book.review_2 }}</p>
+        </div>
+        <div class="review-item">
+          <div class="review-header">
+            <strong>Amit Kumar</strong>
+            <span class="review-stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="review-text">{{ book.review_3 }}</p>
+        </div>
+      </div>
+
+      <div id="author" class="tab-content">
+        <h3>About the Author</h3>
+        <p><strong>{{ book.author }}</strong></p>
+        <p>{{ book.author_bio }}</p>
+      </div>
+    </div>
+
+    <!-- Related Books -->
+    <div class="related-books-section">
+      <h2>You May Also Like</h2>
+      <div class="book-grid">
+        {% for related_book_id, related_book in related_books.items() %}
+        <div class="book-card">
+          <img src="{{ url_for('static', filename=related_book.image) }}" alt="{{ related_book.name }}">
+          <h3>{{ related_book.name }}</h3>
+          <p>by {{ related_book.author }}</p>
+          <div class="price">₹{{ related_book.price }}</div>
+          <a href="{{ url_for('book_info', book_id=related_book_id) }}" class="view-btn">View Details</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 E-Book Bazaar | All Rights Reserved</p>
+      <div class="social-links">
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+    function showTab(tabName) {
+      // Hide all tabs
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      
+      // Remove active from all buttons
+      const btns = document.querySelectorAll('.tab-btn');
+      btns.forEach(btn => btn.classList.remove('active'));
+      
+      // Show selected tab
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
