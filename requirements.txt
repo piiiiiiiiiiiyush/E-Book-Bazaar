@@ -8,7 +8,3 @@ MarkupSafe==2.1.5
 SQLAlchemy==2.0.29
 flask
 gunicorn==21.2.0
-<<<<<<< HEAD
-
-=======
->>>>>>> 42c3c4d99db96a9b3742f722fadf096cffb8bf96
